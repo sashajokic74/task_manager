@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+    <title>Task Management App</title>
+</head>
+<body class="bg-gray-300 min-h-screen font-sans">
+
+    <header class='fixed top-0 w-full z-10 shadow-md dark:shadow-none'>
+        <nav class="shadow-xl dark:bg-orange-400">
+            <ul class="flex justify-center gap-x-15.5 text-2xl items-center h-16">
+                    <li class="text-gray-700 dark:border-b-4 hover:shadow-xl rounded-md font-medium transition duration-200"><a href="{{ url_for('home') }}">
+                        Home
+                    </a></li>
+                    <li class="text-gray-700 dark:border-b-4 hover:shadow-xl rounded-md font-medium transition duration-200"><a href="{{ url_for('dashboard') }}">
+                        Dashboard
+                    </a></li>
+                {% if current_user.is_authenticated %}
+                    <section class="flex items-center space-x-2" >
+                        <li class="text-gray-700 dark:border-b-4 hover:shadow-xl rounded-md font-medium transition duration-200"><a href="{{ url_for('logout') }}">
+                            Logout
+                        </a></li>
+                    </section>
+                {% else %}
+                    <li class="text-gray-700 dark:border-b-4 hover:shadow-xl rounded-md font-medium transition duration-200"><a href="{{ url_for('login') }}">
+                        Login / Register
+                    </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    {% block body %}{% endblock %}
+    
+    
+</body>
+</html>
